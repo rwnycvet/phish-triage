@@ -1,0 +1,13 @@
+# Secrets — never commit
+.env
+
+# Virtual environment — rebuildable from uv.lock
+.venv/
+
+# Python bytecode cache
+__pycache__/
+*.pyc
+
+# Editor / OS noise
+.vscode/
+Thumbs.db
