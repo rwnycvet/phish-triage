@@ -1,0 +1,38 @@
+Return-Path: <bounce-9f2a@mail-relay-07.example.net>
+Received: from mail-relay-07.example.net (mail-relay-07.example.net [198.51.100.47])
+	by mx.recipient.example.com with ESMTP id 4bXk2p9Qz3
+	for <ricwatsonjr@recipient.example.com>; Thu, 25 Sep 2026 19:14:02 -0400 (EDT)
+Received: from unknown (HELO acmebank.example.com) (203.0.113.201)
+	by mail-relay-07.example.net with SMTP; Thu, 25 Sep 2026 19:13:58 -0400
+Authentication-Results: mx.recipient.example.com;
+	spf=fail (sender IP is 198.51.100.47) smtp.mailfrom=acmebank.example.com;
+	dkim=none (message not signed) header.d=none;
+	dmarc=fail action=quarantine header.from=acmebank.example.com
+From: "Acme Bank Security Team" <security-alert@acmeb4nk-verify.example.net>
+Reply-To: <acmebank.recovery.dept@webmail-provider.example.org>
+To: <ricwatsonjr@recipient.example.com>
+Subject: URGENT: Unusual sign-in detected - account will be suspended in 24 hours
+Date: Thu, 25 Sep 2026 19:13:55 -0400
+Message-ID: <7f3a9c2e1b4d@acmeb4nk-verify.example.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+Dear Valued Customer,
+
+We detected a sign-in to your Acme Bank account from an unrecognized
+device located in another country. For your protection we have placed a
+temporary hold on your account.
+
+You must verify your identity within 24 hours or your account will be
+permanently suspended and pending transfers will be reversed.
+
+Verify now: http://acmeb4nk-verify.example.net/secure/login?ref=9f2a1c
+
+If the link does not work, copy this address into your browser:
+http://198.51.100.47/~verify/acmebank/login.php
+
+Failure to act will result in permanent closure of your account.
+
+Sincerely,
+Acme Bank Security Department
+This is an automated message. Do not reply.
