@@ -5,7 +5,7 @@ import os
 import sys
 
 from dotenv import load_dotenv
-from groq import Groq
+from groq import APIError, Groq
 
 from phish_triage.parser import parse_email
 
@@ -55,25 +55,65 @@ Respond with a single JSON object and nothing else, with exactly these keys:
 Do not invent facts. If a field was empty, treat it as absent."""
 
 
+class AnalysisError(RuntimeError):
+    """Raised when the analyst layer cannot produce a verdict."""
+
+
 def analyze(facts: dict) -> dict:
     """Ask the model for a triage verdict on the parsed facts."""
     load_dotenv()
     client = Groq(api_key=os.environ["GROQ_API_KEY"])
 
-    response = client.chat.completions.create(
-        model=MODEL,
-        temperature=0.1,
-        response_format={"type": "json_object"},
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": json.dumps(facts, indent=2)},
-        ],
-    )
+    try:
+        response = client.chat.completions.create(
+            model=MODEL,
+            temperature=0.1,
+            response_format={"type": "json_object"},
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": json.dumps(facts, indent=2)},
+            ],
+        )
+    except APIError as exc:
+        raise AnalysisError(f"Groq API call failed: {exc}") from exc
 
-    return json.loads(response.choices[0].message.content)
+    raw = response.choices[0].message.content
+
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise AnalysisError(
+            f"model did not return valid JSON; first 200 chars: {raw[:200]!r}"
+        ) from exc
+
+
+def main() -> int:
+    """Entry point. Returns a process exit code."""
+    if len(sys.argv) != 2:
+        print(
+            "usage: python -m phish_triage.analyst <path-to-eml-file>",
+            file=sys.stderr,
+        )
+        return 2
+
+    path = sys.argv[1]
+
+    try:
+        with open(path, encoding="utf-8") as f:
+            facts = parse_email(f.read())
+    except OSError as exc:
+        print(f"error: could not read {path}: {exc}", file=sys.stderr)
+        return 1
+
+    try:
+        verdict = analyze(facts)
+    except AnalysisError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+    print(json.dumps(verdict, indent=2, ensure_ascii=False))
+    return 0
 
 
 if __name__ == "__main__":
-    with open(sys.argv[1], encoding="utf-8") as f:
-        facts = parse_email(f.read())
-    print(json.dumps(analyze(facts), indent=2, ensure_ascii=False))
+    sys.exit(main())
