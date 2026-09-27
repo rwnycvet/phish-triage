@@ -1,0 +1,33 @@
+Return-Path: <bounce+7a1c@mail.northwind.example.com>
+Received: from mail.northwind.example.com (mail.northwind.example.com [203.0.113.24])
+	by mx.recipient.example.com with ESMTPS id 8kQr4m2Xz9
+	for <ricwatsonjr@recipient.example.com>; Fri, 25 Sep 2026 10:02:17 -0400 (EDT)
+Authentication-Results: mx.recipient.example.com;
+	spf=pass (sender IP is 203.0.113.24) smtp.mailfrom=mail.northwind.example.com;
+	dkim=pass header.d=northwind.example.com header.s=sel2026;
+	dmarc=pass action=none header.from=northwind.example.com
+From: "Northwind Supply Billing" <billing@northwind.example.com>
+Reply-To: <support@northwind.example.com>
+To: <ricwatsonjr@recipient.example.com>
+Subject: Your September invoice is available
+Date: Fri, 25 Sep 2026 10:02:14 -0400
+Message-ID: <a91f4c07-2b3d@northwind.example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+Hello Richard,
+
+Your invoice for September 2026 is now available in your account.
+
+Invoice number: NW-2026-09-4471
+Amount due: $248.60
+Due date: October 15, 2026
+
+You can view and download it by signing in to your account:
+https://northwind.example.com/billing/invoices
+
+If you have questions about this invoice, reply to this message or contact
+our billing team at support@northwind.example.com.
+
+Thank you,
+Northwind Supply Billing

@@ -1,0 +1,34 @@
+Return-Path: <bounces+i92m4@bounce.mailsend.example.net>
+Received: from mta-14.bounce.mailsend.example.net (mta-14.bounce.mailsend.example.net [198.51.100.203])
+	by mx.recipient.example.com with ESMTPS id 2wLp7c8Rk1
+	for <ricwatsonjr@recipient.example.com>; Sat, 26 Sep 2026 08:41:33 -0400 (EDT)
+Authentication-Results: mx.recipient.example.com;
+	spf=pass (sender IP is 198.51.100.203) smtp.mailfrom=bounce.mailsend.example.net;
+	dkim=none (message not signed) header.d=none;
+	dmarc=fail action=none header.from=harborpoint.example.com
+From: "Harborpoint Member Services" <notifications@harborpoint.example.com>
+Reply-To: <noreply@bounce.mailsend.example.net>
+To: <ricwatsonjr@recipient.example.com>
+Subject: Action required: confirm your account preferences by October 3
+Date: Sat, 26 Sep 2026 08:41:30 -0400
+Message-ID: <20260926.i92m4@bounce.mailsend.example.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+Dear Member,
+
+Our records indicate your communication preferences have not been confirmed
+since your account was opened. To continue receiving statements and service
+notices without interruption, please confirm your preferences by October 3,
+2026.
+
+Confirm your preferences:
+http://click.mailsend.example.net/r/8f2a91c4b7
+
+Accounts with unconfirmed preferences after that date may have electronic
+delivery suspended and will revert to paper statements.
+
+If you did not request this notice, no action is needed.
+
+Harborpoint Member Services
+This mailbox is not monitored.
